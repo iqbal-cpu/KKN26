@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>KKN 26N</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Instrument+Sans:wght@400;600&display=swap">
+    <style>
+        :root {
+            --bg: #eceee8;
+            --card: #f8f9f5;
+            --ink: #26332e;
+            --mut: #66726c;
+            --line: #cfd5cc;
+            --hi: #3e6b4f;
+            --hi-ink: #fff;
+            color-scheme: light;
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px)
+        }
+
+        @media(prefers-color-scheme:dark) {
+            :root:not([data-theme="light"]) {
+                --bg: #171d1a;
+                --card: #1f2723;
+                --ink: #e6ebe6;
+                --mut: #9aa7a0;
+                --line: #33403a;
+                --hi: #7fb68f;
+                --hi-ink: #10201a;
+                color-scheme: dark
+            }
+        }
+
+        :root[data-theme="dark"] {
+            --bg: #171d1a;
+            --card: #1f2723;
+            --ink: #e6ebe6;
+            --mut: #9aa7a0;
+            --line: #33403a;
+            --hi: #7fb68f;
+            --hi-ink: #10201a;
+            color-scheme: dark
+        }
+
+        html {
+            scroll-padding-top: env(safe-area-inset-top, 0px)
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font: 16px/1.5 "Instrument Sans", system-ui, sans-serif
+        }
+
+        main {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 20px 16px 48px
+        }
+
+        h1 {
+            font: 800 2rem/1.1 "Bricolage Grotesque", system-ui, sans-serif;
+            margin: 0
+        }
+
+        h2,
+        h3 {
+            font: 700 1.05rem "Bricolage Grotesque", system-ui, sans-serif;
+            margin: 16px 0 6px
+        }
+
+        .sub,
+        small,
+        .empty,
+        article span {
+            color: var(--mut)
+        }
+
+        .sub {
+            margin: 4px 0 14px
+        }
+
+        .v[hidden] {
+            display: none
+        }
+
+        .c {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin: 14px 0
+        }
+
+        .c h2 {
+            margin-top: 0
+        }
+
+        summary {
+            font-weight: 600;
+            cursor: pointer
+        }
+
+        .f {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 10px;
+            margin: 12px 0
+        }
+
+        label {
+            display: flex;
+            flex-direction: column;
+            font-size: .9rem;
+            color: var(--mut);
+            gap: 3px
+        }
+
+        input,
+        select,
+        textarea {
+            font: inherit;
+            color: var(--ink);
+            background: var(--bg);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 8px
+        }
+
+        button {
+            font: inherit;
+            font-weight: 600;
+            border: 1px solid var(--hi);
+            background: var(--hi);
+            color: var(--hi-ink);
+            border-radius: 8px;
+            padding: 8px 14px;
+            cursor: pointer;
+            margin: 0 6px 6px 0
+        }
+
+        button.o,
+        nav button {
+            background: transparent;
+            color: var(--hi)
+        }
+
+        nav button.on {
+            background: var(--hi);
+            color: var(--hi-ink)
+        }
+
+        button.x {
+            background: transparent;
+            color: var(--mut);
+            border-color: var(--line);
+            font-weight: 400;
+            padding: 2px 8px;
+            margin: 0 0 0 6px
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--hi);
+            outline-offset: 2px
+        }
+
+        nav {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 8px 0 14px
+        }
+
+        .bar {
+            height: 8px;
+            background: var(--line);
+            border-radius: 4px;
+            overflow: hidden
+        }
+
+        .bar i {
+            display: block;
+            height: 100%;
+            background: var(--hi)
+        }
+
+        article {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-left: 4px solid var(--hi);
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin: 8px 0
+        }
+
+        article div {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            flex: 1 1 220px
+        }
+
+        .rd p,
+        #lg p {
+            margin: 5px 0
+        }
+
+        .rd b {
+            display: inline-block;
+            min-width: 3.2em
+        }
+
+        .m {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px
+        }
+
+        .m span {
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 3px 4px 3px 12px;
+            background: var(--bg)
+        }
+
+        .m span.p {
+            border-color: var(--hi)
+        }
+
+        .ck {
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 8px;
+            color: var(--ink);
+            font-size: 1rem;
+            margin: 4px 0
+        }
+
+        .m2 {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px
+        }
+
+        .pg {
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 3px 12px;
+            background: var(--bg)
+        }
+
+        .pg.h {
+            border-color: var(--hi)
+        }
+
+        .pg.ok {
+            background: var(--hi);
+            color: var(--hi-ink);
+            border-color: var(--hi)
+        }
+
+        .w {
+            overflow-x: auto
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            min-width: 460px
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 6px 8px;
+            border-bottom: 1px solid var(--line);
+            vertical-align: top
+        }
+
+        th {
+            font-weight: 600;
+            color: var(--mut)
+        }
+
+        #t {
+            position: fixed;
+            left: 50%;
+            bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+            transform: translateX(-50%);
+            background: var(--ink);
+            color: var(--bg);
+            padding: 8px 16px;
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity .2s;
+            pointer-events: none
+        }
+
+        #t.s {
+            opacity: 1
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h1>KKN 26N</h1>
+        <p class="sub">Kemadang, Gunungkidul. <span id="st">Menghubungkan...</span></p>
+        <nav><button data-v="proker">Proker</button><button data-v="rundown">Rundown</button><button
+                data-v="piket">Piket</button><button data-v="log">Logbook</button></nav>
+
+        <div class="v" id="v-proker">
+            <div id="sum"></div>
+            <details open class="c">
+                <summary>Tambah proker</summary>
+                <div class="f">
+                    <label>Nama proker<input id="n"></label>
+                    <label>Bidang<select id="b">
+                            <option>Pendidikan
+                            <option>Lingkungan
+                            <option>UMKM dan ekonomi
+                            <option>Kesehatan
+                            <option>Air dan pangan
+                            <option>Lainnya
+                        </select></label>
+                    <label>Penanggung jawab<input id="p"></label>
+                    <label>Tanggal<input id="d" type="date"></label>
+                    <label>Jam<input id="j" type="time"></label>
+                    <label>Anggaran (Rp)<input id="a" type="number" min="0" inputmode="numeric"></label>
+                </div><button id="add">Simpan proker</button>
+            </details>
+            <div id="lp"></div>
+        </div>
+
+        <div class="v" id="v-rundown"><button class="o" id="wr">Salin untuk WA</button>
+            <div class="rd" id="rd"></div>
+        </div>
+
+        <div class="v" id="v-piket">
+            <section class="c">
+                <h2>Anggota</h2>
+                <div class="f"><label>Nama<input id="mn"></label>
+                    <label>Jenis kelamin<select id="mg">
+                            <option>Cewek
+                            <option>Cowok
+                        </select></label>
+                </div>
+                <button id="madd">Tambah anggota</button>
+                <div class="m" id="mem"></div>
+            </section>
+            <section class="c">
+                <h2>Jadwal piket</h2>
+                <p class="sub">Jaga posko: satu cewek dan satu cowok tiap hari.</p>
+                <div class="f"><label>Mulai tanggal<input id="s" type="date"></label>
+                    <label>Jumlah hari<input id="h" type="number" min="1" max="90" value="45"></label>
+                    <label>Orang kebersihan per hari<input id="k" type="number" min="1" max="6" value="2"></label>
+                </div>
+                <button id="gen">Buat jadwal</button><button class="o" id="wp">Salin untuk WA</button>
+                <div class="w" id="jd"></div>
+            </section>
+        </div>
+
+        <div class="v" id="v-log">
+            <section class="c">
+                <h2>Progres pertemuan</h2>
+                <p class="sub">Pertemuan 1 sampai 4 sudah terpenuhi di pembekalan. Warna penuh kalau semua bukti sudah
+                    dicentang.</p>
+                <div class="m2" id="pg"></div>
+            </section>
+            <section class="c">
+                <h2>Isi logbook</h2>
+                <div class="f">
+                    <label style="grid-column:1/-1">Pertemuan<select id="lt"></select></label>
+                    <p class="sub" id="li" style="grid-column:1/-1;margin:0"></p>
+                    <label>Tanggal<input id="ld" type="date"></label>
+                    <label>Nama<select id="ln"></select></label>
+                    <label>Untuk proker<select id="lr"></select></label>
+                    <label style="grid-column:1/-1">Kegiatan<textarea id="lk" rows="3"></textarea></label>
+                    <div id="bk" style="grid-column:1/-1"></div>
+                    <label style="grid-column:1/-1">Lampiran bukti (foto, PDF, PPT, boleh banyak)<input id="lf"
+                            type="file" multiple accept="image/*,.pdf,.pptx,.docx,.xlsx"></label>
+                    <label style="grid-column:1/-1">Link bukti (TikTok atau website, kalau ada)<input id="ll"></label>
+                </div><button id="ladd">Simpan logbook</button><button class="o" id="wl">Salin untuk WA</button>
+                <div id="lg"></div>
+            </section>
+        </div>
+    </main>
+    <div id="t" role="status"></div>
+
+    <script>
+        const K = 'kkn26n', ST = ['Rencana', 'Berjalan', 'Selesai'], $ = s => document.querySelector(s);
+        let D = { L: [], M: [], Lg: [], P: { s: '', h: 45, k: 2 } }, view = 'proker';
+        let KODE = localStorage.getItem('kode') || '', S = {}, busy = 0, dirty = false, lock = false, ver = 0, last = '', eid = 0, elg = 0;
+        const COLS = ['L', 'M', 'Lg'], stat = t => $('#st').textContent = t;
+        function snap() { S = { P: JSON.stringify(D.P) }; COLS.forEach(c => D[c].forEach(x => S[c + ':' + x.id] = JSON.stringify(x))) }
+        async function api(a, body, raw) {
+            if (!KODE) { KODE = (prompt('Masukkan kode kelompok') || '').trim(); localStorage.setItem('kode', KODE) }
+            const r = await fetch('api.php?a=' + a, { method: 'POST', headers: { 'X-Kode': KODE }, body: raw || JSON.stringify(body || {}) });
+            if (r.status === 401) { KODE = ''; lock = true; localStorage.removeItem('kode'); throw new Error('kode salah, klik di sini untuk coba lagi') }
+            if (!r.ok) throw new Error('server error'); return r.json()
+        }
+        async function pull() {
+            const v = ver; try {
+                const o = await api('all'), h = JSON.stringify(o);
+                if (busy || v !== ver || h === last) { if (!busy) stat('Tersinkron'); return }
+                last = h; D = { ...D, ...o }; D.Lg = D.Lg.filter(x => x.p && PT[x.p] && x.bk); snap();
+                ['s', 'h', 'k'].forEach(i => { if (document.activeElement.id !== i) $('#' + i).value = D.P[i] });
+                stat('Tersinkron'); render()
+            } catch (e) { stat('Offline: ' + e.message) }
+        }
+        async function sync() {
+            busy++; try {
+                const cur = {};
+                for (const c of COLS) for (const x of D[c]) { const k = c + ':' + x.id, j = JSON.stringify(x); cur[k] = 1; if (S[k] !== j) { await api('put', { col: c, item: x }); S[k] = j } }
+                for (const k of Object.keys(S)) if (k !== 'P' && !cur[k]) { const [c, id] = k.split(':'); await api('del', { col: c, id }); delete S[k] }
+                const pj = JSON.stringify(D.P); if (pj !== S.P) { await api('p', D.P); S.P = pj }
+                dirty = false; last = ''; stat('Tersinkron')
+            } catch (e) { dirty = true; stat('Belum terkirim: ' + e.message) } busy--
+        }
+        const save = () => { ver++; sync() };
+        setInterval(() => { if (!busy && !lock) dirty ? sync() : pull() }, 5000);
+        $('#st').onclick = () => { lock = false; dirty ? sync() : pull() };
+        const rp = n => 'Rp' + (+n || 0).toLocaleString('id-ID');
+        const fd = d => d.toLocaleDateString('id-ID', { weekday: 'short', day: 'numeric', month: 'short' });
+        const tg = d => d ? fd(new Date(d + 'T00:00')) : 'Belum ada tanggal';
+        const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+        const key = x => (x.d || '9') + (x.j || '');
+        const grp = a => { const g = {}; a.forEach(x => (g[x.d || ''] = g[x.d || ''] || []).push(x)); return g };
+        const prk = () => [...D.L].sort((x, y) => key(x) < key(y) ? -1 : 1);
+        function toast(m) { const t = $('#t'); t.textContent = m; t.className = 's'; setTimeout(() => t.className = '', 1800) }
+        async function cp(t) { try { await navigator.clipboard.writeText(t); toast('Tersalin, tinggal tempel di WA') } catch (e) { prompt('Salin teks ini:', t) } }
+        function fill(el, h) { const c = el.value; el.innerHTML = h; if (c) el.value = c }
+        const B11 = ['Foto produk (minimal 3 pcs, untuk produk kewirausahaan)', 'Foto inovasi bersama warga', 'Manual book atau cara pembuatan', 'Video profil bernarasi, diunggah ke TikTok', 'Link website'];
+        const PT = {
+            5: ['Pengenalan lokasi KKN tematik dan identifikasi masalah, misal wawancara', 'CPMK 82', ['Foto saat mewawancara']],
+            6: ['Komunikasi dengan teman, pimpinan, dan masyarakat, metode PBL/PjBL, misal arisan atau rapat bapak-bapak', 'CPMK 91', ['Foto mahasiswa dan warga saat kegiatan']],
+            10: ['Rencana kegiatan masyarakat, misal bazar atau lomba, mahasiswa ikut jadi panitia', 'CPMK 91', ['Proposal ditandatangani dan distempel pihak berwenang', 'Foto (cukup 1)']],
+            14: ['Rencana surat menyurat, misal undangan rapat atau peminjaman proyektor', 'CPMK 92', ['Surat yang sudah ditandatangani pihak berwenang']],
+            15: ['Menyusun laporan KKN', 'CPMK 92', ['Laporan KKN ditandatangani DPL']]
+        };
+        for (let i = 7; i <= 9; i++)PT[i] = ['Program pemberdayaan masyarakat, kegiatan ' + (i - 6) + ' dari 3 (sosialisasi, penyuluhan, dll)', 'CPMK 92', ['PPT materi', 'Foto saat kegiatan, semua terlihat']];
+        for (let i = 11; i <= 13; i++)PT[i] = ['Rencana pengembangan desa, kegiatan ' + (i - 10) + ' dari 3 (harus beda tiap pertemuan: produk kewirausahaan, alat IPTEK, video profil, atau website)', 'CPMK 93', B11];
+
+        function rProker() {
+            const L = D.L, done = L.filter(x => x.s === 'Selesai').length, tot = L.reduce((t, x) => t + (+x.a || 0), 0);
+            $('#sum').innerHTML = `<div class="bar"><i style="width:${L.length ? done / L.length * 100 : 0}%"></i></div><p class="sub">${done} dari ${L.length} proker selesai. Total anggaran ${rp(tot)}.</p>`;
+            $('#lp').innerHTML = L.length ? prk().map(x => `<article><div><b>${esc(x.n)}</b><span>${esc(x.b)}, PJ ${esc(x.p || '-')}</span><span>${tg(x.d)}${x.j ? ' pukul ' + x.j : ''}, ${rp(x.a)}, ${D.Lg.filter(l => l.pr == x.id).length} catatan logbook</span></div><select data-id="${x.id}" aria-label="Status">${ST.map(s => `<option${s === x.s ? ' selected' : ''}>${s}</option>`).join('')}</select><button class="x" data-ed="${x.id}">Ubah</button><button class="x" data-del="${x.id}">Hapus</button></article>`).join('') : '<p class="empty">Belum ada proker. Isi formulir di atas, lalu tekan Simpan proker.</p>'
+        }
+
+        function rRundown() {
+            const g = grp(prk());
+            $('#rd').innerHTML = D.L.length ? Object.keys(g).map(k => `<h2>${tg(k)}</h2>${g[k].map(x => `<p><b>${x.j || '--:--'}</b>${esc(x.n)} <small>PJ ${esc(x.p || '-')}</small></p>`).join('')}`).join('') : '<p class="empty">Belum ada proker. Tambah dulu di tab Proker.</p>'
+        }
+
+        function plan() {
+            const c = D.M.filter(m => m.g === 'Cewek'), l = D.M.filter(m => m.g === 'Cowok'), R = [], P = D.P, s = new Date(P.s + 'T00:00');
+            if (!P.s || isNaN(s)) return R; let pc = 0, pl = 0;
+            for (let i = 0; i < P.h; i++) {
+                const d = new Date(s); d.setDate(s.getDate() + i);
+                const posko = [c.length && c[i % c.length].n, l.length && l[i % l.length].n].filter(Boolean), src = i % 2 ? l : c, bers = [];
+                for (let j = 0; j < Math.min(P.k, src.length); j++) { if (i % 2) { bers.push(src[pl % src.length].n); pl++ } else { bers.push(src[pc % src.length].n); pc++ } }
+                R.push({ d, posko, bers })
+            }
+            return R
+        }
+        function rPiket() {
+            $('#mem').innerHTML = D.M.length ? D.M.map((m, i) => `<span class="${m.g === 'Cewek' ? 'p' : ''}">${esc(m.n)} <small>${m.g}</small><button class="x" data-i="${i}" aria-label="Hapus ${esc(m.n)}">x</button></span>`).join('') : '<p class="empty">Belum ada anggota. Tambahkan satu per satu.</p>';
+            const R = plan();
+            $('#jd').innerHTML = R.length ? `<table><tr><th>Tanggal</th><th>Jaga posko</th><th>Kebersihan</th></tr>${R.map(r => `<tr><td>${fd(r.d)}</td><td>${r.posko.map(esc).join(', ') || '-'}</td><td>${r.bers.map(esc).join(', ') || '-'}</td></tr>`).join('')}</table>` : '<p class="empty">Isi tanggal mulai, lalu tekan Buat jadwal.</p>'
+        }
+
+        function rBk() {
+            const b = PT[$('#lt').value];
+            $('#li').textContent = b[1] + ': ' + b[0];
+            $('#bk').innerHTML = '<small>Bukti yang sudah siap</small>' + b[2].map((t, i) => `<label class="ck"><input type="checkbox" value="${i}">${esc(t)}</label>`).join('')
+        }
+        function st(p) { const e = D.Lg.filter(x => x.p == p); if (!e.length) return ''; const c = Math.max(...e.map(x => x.bk.length)); return (p >= 11 && p <= 13 ? c >= 1 : c >= PT[p][2].length) ? 'ok' : 'h' }
+        function rLog() {
+            fill($('#ln'), D.M.map(m => `<option>${esc(m.n)}</option>`).join('') || '<option value="">Tambah anggota di tab Piket dulu</option>');
+            fill($('#lr'), '<option value="">Tidak terkait proker</option>' + D.L.map(x => `<option value="${x.id}">${esc(x.n)}</option>`).join(''));
+            $('#pg').innerHTML = Object.keys(PT).map(p => `<span class="pg ${st(p)}" title="${esc(PT[p][0])}">Pertemuan ${p}</span>`).join('');
+            const g = {};[...D.Lg].sort((x, y) => x.d < y.d ? -1 : 1).forEach(x => (g[x.p] = g[x.p] || []).push(x));
+            $('#lg').innerHTML = D.Lg.length ? Object.keys(g).sort((a, b) => a - b).map(p => `<h3>Pertemuan ${p}, ${PT[p][1]}</h3>${g[p].map(x => { const pr = D.L.find(y => y.id == x.pr); return `<p><b>${esc(x.n)}</b> <small>${tg(x.d)}${pr ? ', ' + esc(pr.n) : ''}</small>: ${esc(x.t)}<br><small>Bukti ${x.bk.length} dari ${PT[p][2].length}${x.l ? ', link: ' + esc(x.l) : ''}</small>${(x.f || []).map(f => ` <a href="${esc(f.u)}" target="_blank" rel="noopener">${esc(f.n)}</a>`).join('')} <button class="x" data-e="${x.id}">Ubah</button><button class="x" data-l="${x.id}">Hapus</button></p>` }).join('')}`).join('') : '<p class="empty">Belum ada logbook. Isi form di atas lalu tekan Simpan logbook.</p>'
+        }
+
+        function render() {
+            document.querySelectorAll('.v').forEach(v => v.hidden = v.id !== 'v-' + view);
+            document.querySelectorAll('nav [data-v]').forEach(b => b.classList.toggle('on', b.dataset.v === view));
+            rProker(); rRundown(); rPiket(); rLog()
+        }
+
+        document.querySelectorAll('nav [data-v]').forEach(b => b.onclick = () => { view = b.dataset.v; render() });
+        $('#add').onclick = () => {
+            const n = $('#n').value.trim(); if (!n) return toast('Isi nama proker dulu');
+            const it = { id: eid || Date.now(), n, b: $('#b').value, p: $('#p').value.trim(), d: $('#d').value, j: $('#j').value, a: $('#a').value, s: 'Rencana' };
+            if (eid) { const o = D.L.find(x => x.id == eid); it.s = o ? o.s : 'Rencana'; D.L = D.L.map(x => x.id == eid ? it : x) } else D.L.push(it);
+            eid = 0; $('#add').textContent = 'Simpan proker';['#n', '#p', '#a'].forEach(i => $(i).value = ''); save(); render(); toast('Proker disimpan')
+        };
+        $('#lp').addEventListener('click', e => {
+            const x = D.L.find(y => y.id == e.target.dataset.ed); if (!x) return;
+            $('#n').value = x.n; $('#b').value = x.b; $('#p').value = x.p; $('#d').value = x.d; $('#j').value = x.j; $('#a').value = x.a;
+            eid = x.id; $('#add').textContent = 'Simpan perubahan'; $('#n').scrollIntoView({ behavior: 'smooth', block: 'center' })
+        });
+        $('#lp').addEventListener('change', e => { const x = D.L.find(y => y.id == e.target.dataset.id); if (x) { x.s = e.target.value; save(); render() } });
+        $('#lp').addEventListener('click', e => { const id = e.target.dataset.del; if (id && confirm('Hapus proker ini?')) { D.L = D.L.filter(y => y.id != id); save(); render() } });
+        $('#wr').onclick = () => {
+            if (!D.L.length) return toast('Belum ada proker');
+            cp('*Rundown Proker KKN 26N*\n' + prk().map(x => `- ${tg(x.d)}${x.j ? ' ' + x.j : ''}: ${x.n} (PJ ${x.p || '-'}) [${x.s}]`).join('\n'))
+        };
+        $('#madd').onclick = () => {
+            const n = $('#mn').value.trim(); if (!n) return toast('Isi nama dulu');
+            D.M.push({ id: Date.now(), n, g: $('#mg').value }); $('#mn').value = ''; save(); render()
+        };
+        $('#mem').onclick = e => { const i = e.target.dataset.i; if (i !== undefined) { D.M.splice(+i, 1); save(); render() } };
+        $('#gen').onclick = () => {
+            if (!$('#s').value) return toast('Isi tanggal mulai dulu'); if (!D.M.length) return toast('Tambah anggota dulu');
+            D.P = { s: $('#s').value, h: Math.min(90, Math.max(1, +$('#h').value || 45)), k: Math.max(1, +$('#k').value || 2) }; save(); render()
+        };
+        $('#wp').onclick = () => {
+            const R = plan(); if (!R.length) return toast('Buat jadwal dulu');
+            cp('*Jadwal Piket KKN 26N*\n' + R.map(r => `${fd(r.d)}\nPosko: ${r.posko.join(' & ') || '-'}\nKebersihan: ${r.bers.join(', ') || '-'}`).join('\n\n'))
+        };
+        $('#lt').onchange = rBk;
+        $('#ladd').onclick = async () => {
+            const n = $('#ln').value, t = $('#lk').value.trim(), d = $('#ld').value, p = $('#lt').value; if (!d || !n || !t) return toast('Isi tanggal, nama, dan kegiatan dulu');
+            const bk = [...document.querySelectorAll('#bk input:checked')].map(i => +i.value), btn = $('#ladd'); btn.disabled = true;
+            let f = elg ? ((D.Lg.find(x => x.id == elg) || {}).f || []) : [];
+            try { for (const fl of $('#lf').files) { const fm = new FormData(); fm.append('f', fl); const r = await api('up', null, fm); f = f.concat({ u: r.url, n: r.name }) } }
+            catch (e) { btn.disabled = false; return toast('Upload gagal: ' + e.message) }
+            const it = { id: elg || Date.now(), p, d, n, t, pr: $('#lr').value, bk, l: $('#ll').value.trim(), f };
+            if (elg) D.Lg = D.Lg.map(x => x.id == elg ? it : x); else D.Lg.push(it);
+            elg = 0; btn.textContent = 'Simpan logbook'; btn.disabled = false; $('#lk').value = ''; $('#ll').value = ''; $('#lf').value = ''; save(); render(); rBk(); toast('Logbook disimpan')
+        };
+        $('#lg').addEventListener('click', e => {
+            const x = D.Lg.find(y => y.id == e.target.dataset.e); if (!x) return;
+            $('#lt').value = x.p; rBk(); $('#ld').value = x.d; $('#ln').value = x.n; $('#lr').value = x.pr || ''; $('#lk').value = x.t; $('#ll').value = x.l || '';
+            document.querySelectorAll('#bk input').forEach(i => i.checked = x.bk.includes(+i.value));
+            elg = x.id; $('#ladd').textContent = 'Simpan perubahan'; $('#ladd').scrollIntoView({ behavior: 'smooth', block: 'center' })
+        });
+        $('#lg').onclick = e => { const id = e.target.dataset.l; if (id && confirm('Hapus catatan ini?')) { D.Lg = D.Lg.filter(x => x.id != id); save(); render() } };
+        $('#wl').onclick = () => {
+            if (!D.Lg.length) return toast('Belum ada logbook');
+            const g = {};[...D.Lg].sort((x, y) => x.d < y.d ? -1 : 1).forEach(x => (g[x.p] = g[x.p] || []).push(x));
+            cp('*Logbook KKN Bahasa Indonesia*\n' + Object.keys(g).sort((a, b) => a - b).map(p => `Pertemuan ${p} (${PT[p][1]}): ${PT[p][0]}\n` + g[p].map(x => { const pr = D.L.find(y => y.id == x.pr); return `- ${tg(x.d)}, ${x.n}${pr ? ' (' + pr.n + ')' : ''}: ${x.t}\n  Bukti: ${PT[p][2].map((b, i) => (x.bk.includes(i) ? '[v] ' : '[ ] ') + b).join('; ')}${x.l ? '\n  Link: ' + x.l : ''}` }).join('\n')).join('\n\n'))
+        };
+        $('#ld').value = new Date(Date.now() - new Date().getTimezoneOffset() * 6e4).toISOString().slice(0, 10);
+        $('#s').value = D.P.s; $('#h').value = D.P.h; $('#k').value = D.P.k;
+        D.Lg = D.Lg.filter(x => x.p && PT[x.p] && x.bk);
+        $('#lt').innerHTML = Object.keys(PT).map(p => `<option value="${p}">${p}. ${esc(PT[p][0])}</option>`).join(''); rBk();
+        render(); pull();
+    </script>
+</body>
+
+</html>
